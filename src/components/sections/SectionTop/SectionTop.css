@@ -1,0 +1,13 @@
+.button-expand h6 {
+    justify-content: space-between !important
+}
+
+.button-expand {
+    min-width: fit-content !important;
+    display: block !important;
+}
+
+
+.button.trash {
+    background: red !important;
+}

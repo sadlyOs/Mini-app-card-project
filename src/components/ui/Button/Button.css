@@ -1,0 +1,21 @@
+.button {
+    background: #FFFFFF0D !important;
+}
+
+.button h6 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    overflow: visible;
+}
+
+.button.clicked {
+    background: #B676FE !important;
+    color: black;
+}
+
+.button.flex-col h6 {
+    flex-direction: column;
+    overflow: visible;
+}

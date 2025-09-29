@@ -1,0 +1,16 @@
+.modal-filter__block {
+    transition: all .3s;
+}
+
+.modal-filter__block:hover svg path:first-child {
+    fill: white;
+}
+
+
+.modal-game__white {
+    background: var(--color-custom) !important;
+}
+
+.modal-game__white svg path:first-child {
+    fill: white;
+}

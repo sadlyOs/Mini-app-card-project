@@ -1,0 +1,4 @@
+.button-expand {
+    min-width: fit-content !important;
+    display: block !important;
+}
