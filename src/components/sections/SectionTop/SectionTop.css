@@ -3,11 +3,16 @@
 }
 
 .button-expand {
-    min-width: fit-content !important;
+    min-width: max-content !important;
     display: block !important;
 }
 
 
 .button.trash {
     background: red !important;
+}
+
+.swiper-slide {
+    width: fit-content !important;
+    margin-right: 0;
 }

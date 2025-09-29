@@ -19,6 +19,6 @@ export default defineConfig({
     hmr: {
       host: 'localhost'
     },
-    allowedHosts: ['pinguincode.com']
+    allowedHosts: ['pinguincode.com', "35ee75b90b2b.ngrok-free.app"]
   }
 })

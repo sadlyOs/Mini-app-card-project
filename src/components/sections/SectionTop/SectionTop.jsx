@@ -11,8 +11,8 @@ import Modal from "@/components/ui/Modal/Modal"
 import ModalFilter from "@/components/ui/ModalFilter/ModalFilter"
 import { useDispatch, useSelector } from "react-redux"
 import { removeItem, removeAll } from '@/store/filtredSlice'
-
-
+import { Swiper, SwiperSlide } from 'swiper/react'
+import 'swiper/css';
 export default function SectionTop() {
     const [isVisibleModal, setIsVisibleModal] = useState(false)
     const [left, setLeft] = useState(false)
@@ -20,6 +20,15 @@ export default function SectionTop() {
     const data = useSelector(state => state.filter.items)
     const dispatch = useDispatch()
     console.log(data);
+    const params = {
+        slidesPerView: 3,
+        spaceBetween: 10,
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true
+        },
+        className: 'block-scroll'
+    }
 
 
     function clickLeft() {
@@ -34,7 +43,7 @@ export default function SectionTop() {
     return (
         <section>
             <div className="flex flex-col gap-2">
-                <div className='flex gap-1'>
+                <div className='flex gap-1 px-4'>
                     <ButtonComponent clickHandle={() => setIsVisibleModal(!isVisibleModal)}>
                         <img src={icon} alt="icon" />
                         <p>Фильтр</p>
@@ -46,20 +55,25 @@ export default function SectionTop() {
                     }
                 </div>
                 {data.length > 0 &&
-                    <div className="block-scroll flex gap-2 overflow-x-auto" style={{
+                    <div className="" style={{
                         WebkitOverflowScrolling: 'auto',
                         touchAction: 'pan-x',
                         overscrollBehaviorX: 'contain'
                     }}>
-                        {data.map((item, index) => (
-                            <ButtonComponent style={'button-expand'} key={index} clickHandle={() => dispatch(removeItem(item))}>
-                                <p>{item}</p>
-                                <img src={cancel} alt="cancel" />
-                            </ButtonComponent>
-                        ))}
+                        <Swiper
+                                {...params}>
+                            {data.map((item, index) => (
+                                <SwiperSlide>
+                                    <ButtonComponent style={'button-expand'} key={index} clickHandle={() => dispatch(removeItem(item))}>
+                                        <p>{item}</p>
+                                        <img src={cancel} alt="cancel" />
+                                    </ButtonComponent>
+                                </SwiperSlide>
+                            ))}
+                        </Swiper>
                     </div>
                 }
-                <div className="flex w-full gap-2">
+                <div className="flex w-full gap-2 px-4">
                     <div className="flex-1">
                         <ButtonComponent clickHandle={clickLeft} clicked={left}>
                             <img src={ton} alt="ton" />
