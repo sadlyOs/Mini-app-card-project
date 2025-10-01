@@ -10,7 +10,6 @@ export default function Modal({ children, label, isVisible, setIsVisible }) {
     const modalRef = useRef(null);
     const startYRef = useRef(0);
     const startPositionRef = useRef(0);
-    const [visible, setVisible] = useState(false)
     // useLayoutEffect(() => {
     //     const element = ref.current
     //     console.log(isVisible);

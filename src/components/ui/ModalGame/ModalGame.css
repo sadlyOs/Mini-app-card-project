@@ -2,3 +2,7 @@
     min-width: fit-content !important;
     display: block !important;
 }
+
+.checkbox:checked~img {
+    display: block;
+}

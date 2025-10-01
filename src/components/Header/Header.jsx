@@ -2,10 +2,12 @@ import ton from "../../assets/ton_symbol.svg"
 import union from "../../assets/Union.svg"
 import setting from "../../assets/icons/headerIcon/Icon1.svg"
 import notif from "../../assets/icons/headerIcon/Icon.svg"
+import { Link } from "react-router-dom"
 
-export default function Header({ photoUrl, username }) {
+export default function Header({ photoUrl, username, setNavigate }) {
     return (
-        <header className="relative py-4">
+        <header className="relative py-4 px-4">
+            <p className="cursor-pointer" onClick={() => setNavigate('card')}>Карты</p>
             <div className="flex justify-between items-center relative z-20">
                 <div className="flex gap-1">
                     <div className="w-[50px] h-[50px] relative rounded-4xl">
@@ -36,7 +38,7 @@ export default function Header({ photoUrl, username }) {
                     </div>
                 </div>
             </div>
-            <div className="absolute w-full h-full blur-3xl left-0 top-0 z-10 bg-[#17212BCC]"></div>
+            {/* <div className="absolute w-full h-full blur-3xl left-0 top-0 z-10 bg-[#17212BCC]"></div> */}
         </header>
     )
 }
