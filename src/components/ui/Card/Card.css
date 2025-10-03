@@ -1,0 +1,8 @@
+.card:first-child,
+.card:last-child {
+    bottom: 12px !important;
+}
+
+.card {
+    touch-action: none;
+}
