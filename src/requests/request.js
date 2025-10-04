@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const url = 'https://pinguincode.com'
+const url = 'http://10.2.2.2:4850'
 
 export const createRoom = async (data, bearer) => {
     try {

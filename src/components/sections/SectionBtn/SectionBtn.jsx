@@ -10,7 +10,6 @@ export default function SectionBtn() {
     const socket = useSocket()
 
     function clickHandle() {
-
     }
 
     return (
