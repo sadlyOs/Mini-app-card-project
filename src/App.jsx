@@ -2,9 +2,12 @@ import MainPage from './components/MainPage/MainPage';
 import CardPage from './components/CardPage/CardPage';
 import { useMemo, useEffect, useState } from 'react'
 import { disableVerticalSwipes } from '@telegram-apps/sdk';
-
+import { init } from './store/initSlice';
+import { useDispatch } from 'react-redux';
+import { SocketProvider } from './SocketContext';
 function App() {
   const [navigate, setNavigate] = useState('main')
+  const dispatch = useDispatch()
 
   const views = {
     main: <MainPage setNavigate={setNavigate} />,
@@ -13,12 +16,16 @@ function App() {
 
   useEffect(() => {
     disableVerticalSwipes();
+    const rowInit = window.Telegram.WebApp.initData;
+    dispatch(init(rowInit));
   }, [])
 
   return (
-    <>
-      {views[navigate]}
-    </>
+    <SocketProvider>
+      <>
+        {views[navigate]}
+      </>
+    </SocketProvider>
   )
 }
 

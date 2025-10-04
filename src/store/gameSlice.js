@@ -79,7 +79,7 @@ function isCardLower(card1, card2, trumpSuit) {
     }
 
     // Если обе не козырные - сравниваем по достоинству
-    return RANKS.indexOf(card1.rank) < RANKS.indexOf(card2.rank);
+    return ranks.indexOf(card1.rank) < ranks.indexOf(card2.rank);
 }
 
 function findPlayerWithLowestCard(players) {

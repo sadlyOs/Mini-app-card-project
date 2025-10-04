@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { removeItem, removeAll } from '@/store/filtredSlice'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css';
+import { editCurrency } from '../../../store/filtredSlice'
 export default function SectionTop() {
     const [isVisibleModal, setIsVisibleModal] = useState(false)
     const [left, setLeft] = useState(false)
@@ -34,11 +35,13 @@ export default function SectionTop() {
     function clickLeft() {
         setLeft(true)
         setRight(false)
+        editCurrency('ton')
     }
 
     function clickRight() {
         setRight(true)
         setLeft(false)
+        editCurrency('coin')
     }
     return (
         <section>

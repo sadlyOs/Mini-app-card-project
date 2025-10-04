@@ -5,7 +5,7 @@ import { startGame } from '../../store/gameSlice';
 import cancel from '@/assets/icons/cancel2.svg'
 import back from '@/assets/icons/back2.svg'
 import { useLaunchParams } from '@telegram-apps/sdk-react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Card } from '../ui/Card/Card';
 import { playCard } from '../../store/gameSlice';
 import {
@@ -21,16 +21,18 @@ import {
 import { sortableKeyboardCoordinates } from '@dnd-kit/sortable';
 
 function CardPage() {
-    const dispatch = useDispatch();
-    const { players, currentPlayer, table } = useSelector(state => state.game);
+    const [activeCard, setActiveCard] = useState(null);
     const user = useLaunchParams();
     const testPlayers = [
         { id: 'player1', name: user.tgWebAppData.user.first_name, isAI: false, cards: [] },
         { id: 'player2', name: 'Bot 1', isAI: true, cards: [] },
         { id: 'player3', name: 'Bot 2', isAI: true, cards: [] },
     ];
+    const dispatch = useDispatch();
+    // dispatch(startGame(testPlayers));
+    const { players, currentPlayer, trumpSuit, deck } = useSelector(state => state.game);
+    const currentTrump = deck[trumpSuit]
 
-    const [activeCard, setActiveCard] = useState(null);
     const handleStartGame = () => {
         dispatch(startGame(testPlayers));
         // Создаем игроков для теста
@@ -91,8 +93,8 @@ function CardPage() {
 
     return (
         <div className='min-h-[100vh] w-full bg-[#274948]'>
+            <p onClick={handleStartGame}>click</p>
             <div className='flex flex-col h-[100vh]'>
-                <p onClick={handleStartGame}>играть</p>
                 <DndContext sensors={sensors} onDragStart={handleDragStart} onDragEnd={handleDragEnd}>
                     <div className='flex justify-between px-4 py-3'>
                         <div className='cursor-pointer'>
@@ -110,8 +112,19 @@ function CardPage() {
                             <img src={cancel} alt="cancel" className='cursor-pointer' />
                         </div>
                     </div>
-                    <div className='flex-1'>
+                    <div className='flex-1 relative'>
                         <Table />
+                        <div className='absolute left-[-10px] w-[80px] top-[50px]'>
+                            <div className='relative h-[80px]'>
+                                <img src="/back-card.png" alt="back-card" className='h-[15vh] absolute rotate-1 z-10'/>
+                                <img src="/back-card.png" alt="back-card" className='h-[15vh] absolute rotate-2 z-10'/>
+                                <img src="/back-card.png" alt="back-card" className='h-[15vh] absolute rotate-3 z-10'/>
+                                <div className='absolute rotate-90 z-0 left-4'>
+                                    {/* <img src={currentTrump.imageUrl} alt="suit" className='h-[15vh]' /> */}
+                                </div>
+                            </div>
+                            <p className='relative z-20 left-3 top-6 bg-[#202d317c] text-center rounded-4xl w-[50px]'>{deck.length}</p>
+                        </div>
                     </div>
                     <div>
                         <div className="players-container">
@@ -121,8 +134,10 @@ function CardPage() {
                                     key={player.id}
                                     player={player}
                                     isCurrentPlayer={player.id === currentPlayer}
+                                    photo={user.tgWebAppData.user.photo_url}
                                 />
                             ))}
+
                         </div>
                     </div>
                     <DragOverlay>

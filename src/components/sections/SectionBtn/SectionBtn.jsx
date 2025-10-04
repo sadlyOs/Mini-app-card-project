@@ -3,9 +3,11 @@ import btnIcon from '../../../assets/icons/btnIcon.svg'
 import { useState } from "react"
 import Modal from "../../ui/Modal/Modal"
 import ModalGame from "../../ui/ModalGame/ModalGame"
+import { useSocket } from "../../../SocketContext"
 
 export default function SectionBtn() {
     const [isVisibleModal, setIsVisibleModal] = useState(false)
+    const socket = useSocket()
 
     function clickHandle() {
 
@@ -18,7 +20,7 @@ export default function SectionBtn() {
                     <img src={btnIcon} alt="btnIcon" className="h-[2vh]" />
                     <p>Создать игру</p>
                 </ButtonComponent>
-                <ButtonComponent style={'bg-linear-to-r! from-[#FAE298] to-[#B676FE] text-black!'}>
+                <ButtonComponent clickHandle={clickHandle} style={'bg-linear-to-r! from-[#FAE298] to-[#B676FE] text-black!'}>
                     <p>Быстрая игра</p>
                 </ButtonComponent>
             </div>

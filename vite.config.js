@@ -19,6 +19,19 @@ export default defineConfig({
     hmr: {
       host: 'localhost'
     },
-    allowedHosts: ['pinguincode.com', "ebe0a786b0b5.ngrok-free.app"]
+    // server: {
+    //   proxy: {
+    //     '/api': {
+    //       target: 'http://10.2.2.2:4850',
+    //       changeOrigin: true,
+    //       secure: false,
+    //     },
+    //     '/ws': {
+    //       target: 'http://10.2.2.2:4850',
+    //       ws: true, // Включает проксирование веб-сокетов
+    //     },
+    //   }
+    // },
+    allowedHosts: ['pinguincode.com', "b5f753307645.ngrok-free.app"]
   }
 })

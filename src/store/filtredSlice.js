@@ -3,7 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const filterSlice = createSlice({
     name: "filter",
     initialState: {
-        items: []
+        items: [],
+        currency: 'ton'
     },
     reducers: {
         addItem: (state, action) => {
@@ -20,9 +21,13 @@ const filterSlice = createSlice({
             console.log('del');
 
             state.items = [];
+        },
+
+        editCurrency: (state, action) => {
+            state.currency = action.payload
         }
     }
 })
 
-export const { addItem, removeItem, removeAll } = filterSlice.actions
+export const { addItem, removeItem, removeAll, editCurrency } = filterSlice.actions
 export default filterSlice.reducer

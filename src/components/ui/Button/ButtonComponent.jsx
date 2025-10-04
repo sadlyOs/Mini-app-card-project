@@ -3,6 +3,7 @@ import './Button.css'
 import clsx from "clsx"
 import { useState } from "react"
 
+
 export default function ButtonComponent({ children, clickHandle, clicked, style, val, type }) {
     const btnStyle = clsx('button', {
         'bg-custom!': clicked

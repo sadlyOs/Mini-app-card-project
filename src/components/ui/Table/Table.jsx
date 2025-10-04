@@ -4,7 +4,7 @@ import { useDroppable } from '@dnd-kit/core';
 import { useEffect } from 'react';
 
 export const Table = () => {
-    const { table, deck, trumpSuit, currentPlayer, players } = useSelector(state => state.game);
+    const { table, currentPlayer, players } = useSelector(state => state.game);
 
     const { isOver, setNodeRef, over } = useDroppable({
         id: 'table-drop-zone',
@@ -14,15 +14,7 @@ export const Table = () => {
     });
 
 
-    const currentPlayerName = players.find(p => p.id === currentPlayer)?.name;
-    useEffect(() => {
-        console.log(over);
-
-        console.log(isOver);
-
-    }, [isOver, over])
-    console.log(isOver);
-    console.log(over);
+    // const currentPlayerName = players.find(p => p.id === currentPlayer)?.name;
 
     return (
         <div className="table h-full w-full px-4" ref={setNodeRef} id='table-drop-zone' style={{
@@ -43,7 +35,7 @@ export const Table = () => {
             </div> */}
 
             {/* Карты на столе */}
-            <div className="battlefield">
+            <div className="battlefield relative">
                 {table.length === 0 && (
                     <div className="empty-table-message">
                         {isOver ? 'Бросьте карту сюда...' : 'Перетащите карту на стол'}

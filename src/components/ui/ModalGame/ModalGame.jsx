@@ -12,18 +12,19 @@ import Icon8 from "@/assets/icons/DurakBv5/icon8.svg?react";
 import galka from "@/assets/icons/galka.svg";
 import ton from "@/assets/ton_symbol.svg";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Input from "@/components/ui/Input/Input";
 import { swipeBehavior } from '@telegram-apps/sdk';
 import "swiper/css";
+import { createRoom } from "../../../requests/request";
 
 export default function ModalGame({ setIsVisibleModal }) {
   const [input, setInput] = useState('');
   const [row1, setRow1] = useState('');
   const [row2, setRow2] = useState('');
   const [password, setPassword] = useState('');
-  const [checked, setChecked] = useState(true)
+  const [checked, setChecked] = useState(false)
   const modes = [
     [
       { Подкидной: <Icon1 /> },
@@ -52,6 +53,10 @@ export default function ModalGame({ setIsVisibleModal }) {
   const [gamer, setGamer] = useState(0);
   const [countTon, setCountTon] = useState(0);
 
+  const data = useSelector(state => state)
+  console.log(data);
+
+
   const clickCard = (e, item) => {
     console.log(e);
 
@@ -68,16 +73,23 @@ export default function ModalGame({ setIsVisibleModal }) {
   function handleSubmit(e) {
     e.preventDefault();
     const ton = input.length > 0 ? Number(input) : countTon
+
     const sendData = {
-      'ton': ton,
-      'card': card,
-      'gamer': gamer,
-      'modes': [row1, row2],
-      'password': password
+      CountCards: Number(card),
+      Horseshoe: row1.toLowerCase() === 'подкидной' ? true : false,
+      Shoolers: row1.toLowerCase() === 'c шулерами' ? true : false,
+      Threowers: row2.toLowerCase() === 'все' ? true : false,
+      GameType: row1.toLowerCase() == 'классика' ? true : false,
+      Coin: data.filter.currency,
+      Price: ton,
+      MaxUsers: gamer,
+      Private: checked
     }
     console.log(sendData);
+    console.log(data.init.user);
 
-    cancel()
+    createRoom(sendData, data.init.user)
+    // cancel()
   }
 
   return (
@@ -189,7 +201,7 @@ export default function ModalGame({ setIsVisibleModal }) {
           <label className="pl-2">Приватная игра</label>
         </div>
         <div>
-          <Input placeholder="Введите пароль" val={password} func={(e) => setPassword(e.target.value)} style="pl-3!" disabled={checked} />
+          <Input placeholder="Введите пароль" val={password} func={(e) => setPassword(e.target.value)} style="pl-3!" disabled={!checked} />
         </div>
       </div>
 

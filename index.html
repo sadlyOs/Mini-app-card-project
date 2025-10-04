@@ -1,20 +1,23 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>web-app</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx">
-    </script>
-    <script src="https://telegram.org/js/telegram-web-app.js">
-      const app = window.Telegram.WebApp
-      console.log(app);
-      app.ready()
-      app.isClosingConfirmationEnabled = true;
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> -->
+  <title>web-app</title>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx">
+  </script>
+  <script src="https://telegram.org/js/telegram-web-app.js">
+    const app = window.Telegram.WebApp
+    console.log(app);
+    app.ready()
+    app.isClosingConfirmationEnabled = true;
 
 
     //   if (window.Telegram && window.Telegram.WebApp) {
@@ -35,5 +38,6 @@
     //     }
     // }, 200);
   </script>
-  </body>
+</body>
+
 </html>
